@@ -1,0 +1,103 @@
+---
+menuTitle: "Test run service"
+order: 2
+category: thrift
+type: step
+targetLang: java
+---
+
+# Test running a service
+
+We've only tested running the service on a server. This time, let's try calling the service. To test, we'll write a simple client using Armeria's <type://ThriftClients#newClient(String,Class)> and the Java code generated from [Create a server](/tutorials/thrift/blog/create-server).
+
+<Tip>
+
+Please refer to [Calling a Thrift service](/docs/client-thrift) for creating Thrift client.
+
+</Tip>
+
+## 1. Create a Thrift file for the client
+
+Create a file, `blog.thrift` inside the directory, `{project_root}/src/main/thrift` for the client.
+
+```thrift filename=blog.thrift
+namespace java example.armeria.blog.thrift
+```
+
+## 2. Define a service and a method
+
+Define the `BlogService` and `hello` method to test the connection between the server and the client. 
+
+```thrift filename=blog.thrift
+service BlogService {
+  string hello(1:string request)
+}
+```
+
+## 3. Compile the thrift file
+
+Compile the `blog.thrift` file to generate Java code. 
+
+```bash
+./gradlew build
+```
+
+<Tip>
+
+  Please refer to [build.gradle](https://github.com/line/armeria-examples/blob/master/tutorials/thrift/build.gradle) for generating code with [Gradle Thrift Plugin](https://github.com/jruyi/thrift-gradle-plugin).
+
+</Tip>
+
+Find the Java code output in the directory, `{project_root}/build/generated-sources/thrift/gen-java/example/armeria/blog/thrift/`.
+
+## 4. Write a main class for the client
+
+1. Create another main class for the client. We'll name the file `BlogClient.java`.
+    ```java filename=BlogClient.java
+    package example.armeria.client.blog.thrift;
+
+    public class BlogClient {
+    public static void main(String[] args) throws Exception {}
+    }
+    ```
+2. Create a client using Armeria's <type://ThriftClients>. We're running the server locally and have set the port to 8080 in our server code. Let's access the server at http://127.0.0.1:8080.
+  ```java filename=BlogClient.java
+  import com.linecorp.armeria.client.thrift.ThriftClients;
+
+  import example.armeria.blog.thrift.BlogService;
+
+  public class BlogClient {
+      public static void main(String[] args) throws Exception {
+          BlogService.Iface blogService =
+              ThriftClients.builder("http://127.0.0.1:8080")
+              .path("/thrift")
+              .build(BlogService.Iface.class); 
+      }
+  }
+  ```
+3. Call `hello` method.
+  ```java filename=BlogClient.java
+  import example.armeria.blog.thrift.CreateBlogPostRequest;
+
+  public static void main(String[] args) throws Exception {
+    ...
+    String greeting = blogService.hello("Armerian World");
+    logger.info(greeting);
+  }
+  ```
+
+## 5. Test run
+
+While the server is running, run the client's `main()` method.
+
+```bash
+[main] INFO  e.a.client.blog.thrift.BlogClient - Hello, Armerian World!
+```
+
+## What's next
+
+In this step, We've created a minimal client and made a call to the server.
+
+Next, we'll get on with implementing a service method for [creating blog posts](/tutorials/thrift/blog/implement-create).
+
+<TutorialSteps current={2} />
