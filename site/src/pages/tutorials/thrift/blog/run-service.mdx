@@ -1,14 +1,16 @@
 ---
-menuTitle: "Test run service"
+menuTitle: "Create a client"
 order: 2
 category: thrift
 type: step
 targetLang: java
 ---
 
-# Test running a service
+# Create a client
 
 We've only tested running the service on a server. This time, let's try calling the service. To test, we'll write a simple client using Armeria's <type://ThriftClients#newClient(String,Class)> and the Java code generated from [Create a server](/tutorials/thrift/blog/create-server).
+
+<TutorialSteps current={2} />
 
 <Tip>
 
@@ -16,41 +18,12 @@ Please refer to [Calling a Thrift service](/docs/client-thrift) for creating Thr
 
 </Tip>
 
-## 1. Create a Thrift file for the client
+## What you need
 
-Create a file `blog.thrift` inside the directory `{project_root}/src/main/thrift` for the client.
+- [Java code generated](/tutorials/thrift/blog/create-server#compile-the-thrift-file)
 
-```thrift filename=blog.thrift
-namespace java example.armeria.blog.thrift
-```
 
-## 2. Define a service and a method
-
-Define the `BlogService` and `hello` method to test the connection between the server and the client. 
-
-```thrift filename=blog.thrift
-service BlogService {
-  string hello(1:string request)
-}
-```
-
-## 3. Compile the thrift file
-
-Compile the `blog.thrift` file to generate Java code. 
-
-```bash
-./gradlew build
-```
-
-<Tip>
-
-  Please refer to [build.gradle](https://github.com/line/armeria-examples/blob/master/tutorials/thrift/build.gradle) for generating code with [Gradle Thrift Plugin](https://github.com/jruyi/thrift-gradle-plugin).
-
-</Tip>
-
-Find the Java code output in the directory, `{project_root}/build/generated-sources/thrift/gen-java/example/armeria/blog/thrift/`.
-
-## 4. Write a main class for the client
+## 1. Write a main class for the client
 
 1. Create another main class for the client. We'll name the file `BlogClient.java`.
     ```java filename=BlogClient.java
@@ -86,7 +59,7 @@ Find the Java code output in the directory, `{project_root}/build/generated-sour
   }
   ```
 
-## 5. Test run
+## 2. Test run
 
 While the server is running, run the client's `main()` method.
 
