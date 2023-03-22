@@ -96,7 +96,6 @@ Let's implement a service method `createBlogPost()` in `BlogServiceImpl.java`.
       @Override
       public void createBlogPost(CreateBlogPostRequest request, AsyncMethodCallback<BlogPost> resultHandler)
               throws TException {
-          //resultHandler.onComplete(null);
           final int id = idGenerator.getAndIncrement();
           final Instant now = Instant.now();
           final BlogPost blogPost = new BlogPost()
