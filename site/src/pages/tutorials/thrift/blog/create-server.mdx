@@ -10,13 +10,10 @@ targetLang: java
 
 As the first step of the tutorial, we'll write a Thrift server with a dummy service.
 
-<Tip>
+<TutorialSteps current={1} />
 
-Please refer to [Running a Thrift service](/docs/server-thrift) for creating a Thrift server.
 
-</Tip>
-
-## 1. Create a Thrift file
+## 1. Create a thrift file
 
 Create a file, `blog.thrift` inside the directory, `{project_root}/src/main/thrift` each server and client.
 
@@ -44,7 +41,7 @@ Compile the `blog.thrift` file to generate Java code.
 
 <Tip>
 
-  Please refer to [build.gradle](https://github.com/line/armeria-examples/blob/master/tutorials/thrift/build.gradle) for generating code with [Gradle Thrift Plugin](https://github.com/jruyi/thrift-gradle-plugin).
+Please refer to [build.gradle](https://github.com/line/armeria-examples/blob/master/tutorials/thrift/build.gradle) for generating code with [Gradle Thrift Plugin](https://github.com/jruyi/thrift-gradle-plugin).
 
 </Tip>
 
@@ -112,7 +109,7 @@ Build a server and add service to the server using Armeria's <type://ServerBuild
     }
   ```
 
-## 6. Serve the service
+## 6. Start the server
 
 Create a server instance in the `main()` method.
 
@@ -144,7 +141,7 @@ Your server is running if you see the following message.
 
 ## What's next
 
-In this step, we've defined a thrift file for our service and generated Java code. And then, we've created and added a Thrift service to a server. 
+In this step, we've defined a thrift file for our service and generated Java code. And then, we've created and added a Thrift service to a server. See [Running a Thrift service](/docs/server-thrift) for more information.
 
 Next, we'll implement a minimal client and made a call to the server to [test run](/tutorials/thrift/blog/run-service).
 
