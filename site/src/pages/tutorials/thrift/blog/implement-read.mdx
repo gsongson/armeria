@@ -10,7 +10,7 @@ level: basic
 
 # Implementing READ operation
 
-In the earlier step, we tried creating a blog post. In this step, we'll implement a read operation and make a call to read blog posts. We'll write two service methods, one for reading a single post and another for multiple posts. And here, we'll throw a custom exception and add a BlogServiceExceptionHandler for handling.
+In the earlier step, we tried creating a blog post. In this step, we'll implement a read operation and make a call to read blog posts. We'll write two service methods, one for reading a single post and another for multiple posts. And here, we'll throw a custom exception and add a `BlogServiceExceptionHandler` for handling.
 
 <TutorialSteps current={4} />
 
@@ -27,7 +27,7 @@ You need to have:
 
 First, add an exception and an exception handler class for the exception to be thrown when a specified blog post ID doesn't exist.
 
-1. Add an exception in blog.thrift file.
+1. Add an exception in `blog.thrift` file.
   ```thrift filename=blog.thrift
   ...
   /**
@@ -78,7 +78,7 @@ Now, let's write two methods for retrieving blog posts; one for a single post an
 <Tabs>
 <TabPane tab="Single post" key="1">
 
-1. Add a method and a struct in blog.thrift file to retrieve a single post.
+1. Add a method and a struct in `blog.thrift` file to retrieve a single post.
   ```thrift filename=blog.thrift
   ...
   /**
@@ -126,7 +126,7 @@ Now, let's write two methods for retrieving blog posts; one for a single post an
 </TabPane>
 <TabPane tab="Multiple posts" key="2">
 
-1. Add a method and structs in blog.thrift file.
+1. Add a method and structs in `blog.thrift` file.
   ```thrift filename=blog.thrift
   /**
    * A request object for fetching a list of blog posts.
@@ -194,7 +194,7 @@ This time, we'll implement a client method for each corresponding server method.
 <Tabs>
 <TabPane tab="Single post" key="1">
 
-1. Add a method and a struct and an exception in the blog.thrift file, as we did in [1. Implement server-side](#1-implement-server-side).
+1. Add a method and a struct and an exception in `blog.thrift` file, as we did in [1. Implement server-side](#1-implement-server-side).
 2. Add a method in the `BlogClient.java` to retrieve a single post.
   ```java filename=BlogClient.java
   import example.armeria.blog.thrift.BlogNotFoundException;
@@ -210,7 +210,7 @@ This time, we'll implement a client method for each corresponding server method.
 </TabPane>
 <TabPane tab="Multiple posts" key="2">
 
-1. Add a method and a struct and an exception in the blog.thrift file, as we did in [1. Implement server-side](#1-implement-server-side).
+1. Add a method and a struct and an exception in `blog.thrift` file, as we did in [1. Implement server-side](#1-implement-server-side).
 2. Add a method in the `BlogClient.java` to retrieve a list of posts.
   ```java filename=BlogClient.java
   import example.armeria.blog.thrift.ListBlogPostsRequest;
